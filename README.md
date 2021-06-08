@@ -40,4 +40,4 @@ make clean
 
 Благодарности
 -------------
-[Амету Умерову](https://github.com/Amet13/bachelor-diploma/) за основу шаблона LaTeX
+[Амету Умерову](https://github.com/Amet13/) за [шаблон LaTeX](https://github.com/Amet13/bachelor-diploma/)
