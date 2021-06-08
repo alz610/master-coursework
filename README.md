@@ -1,4 +1,4 @@
-Курсовая работа
+master-coursework
 ================
 Курсовая работа магистра в LaTeX, оформленная в соответствии с нормоконтролем БашГУ в 2021 году.
 
@@ -41,4 +41,4 @@ make clean
 
 Благодарности
 -------------
-[Амету Умерову](https://github.com/Amet13/) за основу шаблона LaTeX: https://github.com/Amet13/bachelor-diploma/
+[Амету Умерову](https://github.com/Amet13) за основу шаблона LaTeX: https://github.com/Amet13/bachelor-diploma
