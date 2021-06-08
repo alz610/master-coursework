@@ -19,39 +19,16 @@
     breaklines=true, % Перенос строк
     tabsize=2, % Размер табуляции
     literate={--}{{-{}-}}2, % Корректно отображать двойной дефис
-    % extendedchars=true,
-    escapechar=\%,
+    escapechar=\%
 }
-
-% \lstset{
-%     breaklines,
-%     columns=fullflexible,
-%     flexiblecolumns,
-%     numbers=left,
-%     numberstyle={\footnotesize},
-%     extendedchars=\true,
-%     escapechar=\%,
-% }
-
-% Шрифты, xelatex
-% \defaultfontfeatures{Ligatures=TeX}
-% \setmainfont{Times New Roman} % Нормоконтроллеры хотят именно его
-% \newfontfamily\cyrillicfont{Times New Roman}
-% \setsansfont{Liberation Sans} % Тут я его не использую, но если пригодится
-% \setmonofont{FreeMono} % Моноширинный шрифт для оформления кода
-% 
-% Русский язык
-% \usepackage{polyglossia}
-% \setdefaultlanguage{russian}
 
 \usepackage{polyglossia}   %% загружает пакет многоязыковой вёрстки
 \setdefaultlanguage{russian}  %% устанавливает главный язык документа
     %\setdefaultlanguage[babelshorthands=true]{russian}  %% вместо предыдущей строки; доступны команды из пакета babel для русского языка
 \setotherlanguage{english} %% объявляет второй язык документа
-% \defaultfontfeatures{Ligatures={TeX}}  %% свойства шрифтов по умолчанию. Для XeTeX опцию Renderer=Basic можно не указывать, она необходима для LuaTeX
 \defaultfontfeatures{Ligatures={TeX}}  %% свойства шрифтов по умолчанию. Для XeTeX опцию Renderer=Basic можно не указывать, она необходима для LuaTeX
 
-\setmainfont[Ligatures={TeX}]{CMU Serif} %% задаёт основной шрифт документа
+\setmainfont{CMU Serif} %% задаёт основной шрифт документа
 % \setmainfont{Times New Roman} %% задаёт основной шрифт документа
 % \newfontfamily\cyrillicfont{Times New Roman}
 % \setmainfont{FreeSerif} %% задаёт основной шрифт документа
@@ -59,7 +36,7 @@
 % \setmainfont{Linux Libertine O} %% задаёт основной шрифт документа
 
 \setsansfont{CMU Sans Serif}                    %% задаёт шрифт без засечек
-\setsansfont{Liberation Sans} % Тут я его не использую, но если пригодится
+% \setsansfont{Liberation Sans} % Тут я его не использую, но если пригодится
 
 % \setmonofont{CMU Typewriter Text}               %% задаёт моноширинный шрифт
 \setmonofont{FreeMono} % Моноширинный шрифт для оформления кода
