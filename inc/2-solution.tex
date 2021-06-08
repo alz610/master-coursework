@@ -113,8 +113,9 @@ TOTALCORES = NNODES * CORES
 
 \subsection{Поддержка команд, направляемые напрямую из Scheduler на кластер}
 
-Команды на Python:
+Команды на Python: это словарь, в котором хранятся строки путей к скриптам запуска расчетов на сервер, команды для сервера специфичные для системы очередей и методы для обработки результатов команд на сервере
 \begin{lstlisting}
+%Ключ%:                    %Значение%
 QsysCMD.RUN_OMP:         "$RNKIMPATH/scripts/run_rnkim_omp_lsf.sh",
 QsysCMD.RUN_MPI:         "$RNKIMPATH/scripts/run_rnkim_decomp_mpi_lsf.sh",
 QsysCMD.RUN_MPI_ADV:     "$RNKIMPATH/scripts/run_rnkim_mpi_lsf.sh",
@@ -125,9 +126,9 @@ QsysCMD.PARSE_ID_MTHD:   lambda strout: int(strout[strout.find('<') + 1:strout.f
 QsysCMD.UPDT_JSTAT_MTHD: self._update_jstats_lsf
 \end{lstlisting}
 
-Метод \lstinline{QsysCMD.UPDT_JSTAT_MTHD} обновляет статус моделей. Парсит JSON статуса и модели вызывает метод \lstinline{_pars_job_json_lsf} для парсинга значений полей JSON статуса.
+Метод \lstinline{QsysCMD.UPDT_JSTAT_MTHD} обновляет статус моделей. Парсит JSON статуса модели и вызывает метод \lstinline{_pars_job_json_lsf} для парсинга значений полей JSON статуса.
 
-Метод \lstinline{_update_jstats_lsf} парсит поля с значениями у JSON статуса и записывает ключ 'имя модели' со значением словарь состояния с полями с значениями:
+Метод \lstinline{_update_jstats_lsf} парсит поля с значениями у JSON статуса и записывает ключ 'имя модели' со значением словарь состояния:
 \begin{lstlisting}
 {
     "COMMAND":"bjobs",
