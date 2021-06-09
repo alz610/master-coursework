@@ -94,11 +94,11 @@ _tmplNODETYPE_="#BSUB -m \"$NODETYPE\""
 TOTALCORES = NNODES * CORES
 
 
-#BSUB -notify "exit done"
-#BSUB -u <usermail>
--->
 #PBS -m ea
 #PBS -M <usermail>
+-->
+#BSUB -notify "exit done"
+#BSUB -u <usermail>
 
 
 #PBS -N _tmplMODEL_
@@ -111,9 +111,9 @@ TOTALCORES = NNODES * CORES
 \end{lstlisting}
 
 
-\subsection{Поддержка команд, направляемые напрямую из Scheduler на кластер}
+\subsection{Поддержка команд, направляемы напрямую из Scheduler на кластер}
 
-Команды на Python: это словарь, в котором хранятся строки путей к скриптам запуска расчетов на сервер, команды для сервера специфичные для системы очередей и методы для обработки результатов команд на сервере
+Команды в Scheduler, относящиеся к конкретной системе очередей, хранятся в значениях ключей в словаре (тип данных на Python). Значениям соответствуют либо ссылки на исполняемые на сервере скрипты, либо команды для системы очередей, либо ссылки на методы обработки. Для LSF добавлены следующие значения:
 \begin{lstlisting}
 %Ключ%:                    %Значение%
 QsysCMD.RUN_OMP:         "$RNKIMPATH/scripts/run_rnkim_omp_lsf.sh",
@@ -126,28 +126,22 @@ QsysCMD.PARSE_ID_MTHD:   lambda strout: int(strout[strout.find('<') + 1:strout.f
 QsysCMD.UPDT_JSTAT_MTHD: self._update_jstats_lsf
 \end{lstlisting}
 
-Метод \lstinline{QsysCMD.UPDT_JSTAT_MTHD} обновляет статус моделей. Парсит JSON статуса модели и вызывает метод \lstinline{_pars_job_json_lsf} для парсинга значений полей JSON статуса.
+Метод \lstinline{_update_jstats_lsf} обновляет статус моделей. Парсит JSON статуса модели и вызывает метод \lstinline{_pars_job_json_lsf} для парсинга значений полей JSON статуса.
 
 Метод \lstinline{_update_jstats_lsf} парсит поля с значениями у JSON статуса и записывает ключ 'имя модели' со значением словарь состояния:
 \begin{lstlisting}
 {
-    "COMMAND":"bjobs",
-    "JOBS":1,
-    "RECORDS":[
-    {
-        "JOBID":"1363",
-        "USER":"vagrant",
-        "STAT":"EXIT",
-        "JOB_NAME":"MODEL.DATA",
-        "SUBMIT_TIME":"Jun  7 08:19",
-        "START_TIME":"Jun  7 08:19",
-        "FINISH_TIME":"Jun  7 08:19 L",
-        "ERROR_FILE":"",
-        "OUTPUT_FILE":"",
-        "EFFECTIVE_RESREQ":"select[type == local] order[r15s:pg] span[ptile=2] ",
-        "SLOTS":"2"
-    }
-    ]
+    "JOBID":"1363",
+    "USER":"vagrant",
+    "STAT":"EXIT",
+    "JOB_NAME":"MODEL.DATA",
+    "SUBMIT_TIME":"Jun  7 08:19",
+    "START_TIME":"Jun  7 08:19",
+    "FINISH_TIME":"Jun  7 08:19 L",
+    "ERROR_FILE":"",
+    "OUTPUT_FILE":"",
+    "EFFECTIVE_RESREQ":"select[type == local] order[r15s:pg] span[ptile=2] ",
+    "SLOTS":"2"
 }
 -->
 model_name:
@@ -199,7 +193,7 @@ model_name:
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=\linewidth]{type_multithreaded.png}
+    \includegraphics[width=\linewidth]{type_multithread.png}
     \caption{Скриншот Scheduler. Тип расчета модели: многопоточный}
     % \label{fig:block-scheme}
 \end{figure}
