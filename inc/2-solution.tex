@@ -30,7 +30,6 @@ CONFIGURATION_TEMPLATE="HIGH_THROUGHPUT"
 
 \lstinline{CONFIGURATION_TEMPLATE}: шаблон конфигурации для определения начальной конфигурации нового кластера \cite{lsf_overview,host_types_models}.
 
-
 Создание пользователя для администратора LSF и запуск установки LSF: 
 \begin{lstlisting}
 $ sudo -i
@@ -42,6 +41,12 @@ $ sudo -i
 \begin{lstlisting}
 # source /usr/share/lsf/conf/profile.lsf
 # lsfstartup
+\end{lstlisting}
+
+Настройка автозапуска LSF:
+\begin{lstlisting}
+# cd /usr/share/lsf/10.1/install
+# ./hostsetup --top="/usr/share/lsf" --boot="y"
 \end{lstlisting}
 
 
@@ -70,8 +75,11 @@ Shell-скрипты формируют файл c информацией для
 для LSF.
 
 Переписывание скриптов bash с Torque на LSF:
+
 {
 \lstset{emph={job_file}, emphstyle=\itshape}
+Отправка задачи \lstinline{job_file} в очередь 
+
 \begin{lstlisting}
 qsub job_file
 -->
@@ -79,30 +87,55 @@ bsub < job_file
 \end{lstlisting}
 }
 
+В параметр \lstinline{-m} --- конкретные хосты, группы хостов, вычислительные единицы --- передаются теги или типы узлов.
+
+\begin{lstlisting}
+$NODETYPE
+-->
+_tmplNODETYPE_="#BSUB -m \"$NODETYPE\""
+\end{lstlisting}
+
 Переписывание шаблонов задач с Torque на LSF:
+
+В параметр \lstinline{-n} --- задает кол-во тасков в задаче --- передается кол-во ядер в узле \lstinline{_tmplCORES_}.
+
+В параметр \lstinline{-R} --- задает строку ресурсов --- передается кол-во узлов \lstinline{1} \cite{ref_bsub}.
 \begin{lstlisting}
 #PBS -l nodes=1_tmplNODETYPE_:ppn=_tmplCORES_
 -->
 #BSUB -n _tmplCORES_ -R "span[hosts=1]"
 _tmplNODETYPE_
+\end{lstlisting}
 
+В параметр \lstinline{-n} --- задает кол-во тасков в задаче --- передается кол-во всех ядер в узлах \lstinline{_tmplTOTALCORES_}.
 
+В параметр \lstinline{-R} --- задает строку ресурсов --- передается кол-во ядер на узел \lstinline{_tmplCORES_}.
+\begin{lstlisting}
 #PBS -l nodes=_tmplNNODES__tmplNODETYPE_:ppn=_tmplCORES_
 -->
 #BSUB -n _tmplTOTALCORES_ -R "span[ptile=_tmplCORES_]"
 _tmplNODETYPE_
 
-_tmplNODETYPE_="#BSUB -m \"$NODETYPE\""
 TOTALCORES = NNODES * CORES
+\end{lstlisting}
 
+В параметр \lstinline{-notify} --- запрашивает уведомление пользователя, когда задание достигает любого из указанных состояний --- передаются состояния программы.
 
+В параметр \lstinline{-R} --- отправляет письмо по указанному адресу электронной почты --- передается адрес электронной почты.
+\begin{lstlisting}
 #PBS -m ea
 #PBS -M <usermail>
 -->
 #BSUB -notify "exit done"
 #BSUB -u <usermail>
+\end{lstlisting}
 
+В параметр \lstinline{-R} --- присваивает указанное имя заданию --- передается имя модели.
 
+В параметр \lstinline{-W} --- устанавливает ограничение времени выполнения задания --- передается период 150 часов.
+
+В параметр \lstinline{-cwd} --- задает текущую рабочую директорию для выполнения задания --- передается путь директории.
+\begin{lstlisting}
 #PBS -N _tmplMODEL_
 #PBS -l walltime=150:00:00
 #PBS -d _tmplDIR_
