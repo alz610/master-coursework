@@ -193,6 +193,49 @@ model_name:
     }
 \end{lstlisting}
 
+Значение полей:
+
+\lstinline{JOBID}: идентификатор задачи, является порядковым номером задачи
+
+\lstinline{USER}: имя пользователя, который отправил задачу в очередь
+
+\lstinline{STAT}: состояние исполнения задачи
+
+\lstinline{JOB_NAME}: имя задачи, содержащее имя модели
+
+\lstinline{SUBMIT_TIME}: дата отправки задачи в очередь
+
+\lstinline{START_TIME}: дата запуска задачи
+
+\lstinline{FINISH_TIME}: дата завершения задачи
+
+\lstinline{ERROR_FILE}: путь к файлу с выводом задачи
+
+\lstinline{OUTPUT_FILE}: путь к файлу с сообщениями задачи о ошибках
+
+\lstinline{EFFECTIVE_RESREQ}: запрошенные ресурсы для задачи: один узел или кол-во ядер в каждом узле
+
+\lstinline{SLOTS}: кол-во всех запрошенных ядер
+
+\lstinline{model_name}: имя модели
+
+\lstinline{JobStat.ACC_NAME}: имя пользователя, который отправил модель на кластер
+
+\lstinline{JobStat.JOB_NAME}: имя задачи расчета, содержащее имя модели
+
+\lstinline{JobStat.OUT_PATH}: путь к файлу с выводом расчета модели
+
+\lstinline{JobStat.ERR_PATH}: путь к файлу с сообщениями расчета модели о ошибках
+
+\lstinline{JobStat.JOB_STAT}: состояние расчета модели
+
+\lstinline{JobStat.NUM_NODES}: кол-во узлов, запрошенных для модели
+
+\lstinline{JobStat.QUEUE_TIME}: дата отправки расчета модели в очередь
+
+\lstinline{JobStat.START_TIME}: дата запуска расчета модели
+
+\lstinline{JobStat.COMPL_TIME}: дата завершения расчета модели
 
 \subsection{Тестирование}
 
