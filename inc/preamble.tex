@@ -28,9 +28,9 @@
 \setotherlanguage{english} %% объявляет второй язык документа
 \defaultfontfeatures{Ligatures={TeX}}  %% свойства шрифтов по умолчанию. Для XeTeX опцию Renderer=Basic можно не указывать, она необходима для LuaTeX
 
-\setmainfont{CMU Serif} %% задаёт основной шрифт документа
-% \setmainfont{Times New Roman} %% задаёт основной шрифт документа
-% \newfontfamily\cyrillicfont{Times New Roman}
+% \setmainfont{CMU Serif} %% задаёт основной шрифт документа
+\setmainfont{Times New Roman} %% задаёт основной шрифт документа
+\newfontfamily\cyrillicfont{Times New Roman}
 % \setmainfont{FreeSerif} %% задаёт основной шрифт документа
 % \setmainfont{Liberation Serif} %% задаёт основной шрифт документа
 % \setmainfont{Linux Libertine O} %% задаёт основной шрифт документа
@@ -134,11 +134,11 @@
 }
 
 % Формат подрисуночных надписей
-\RequirePackage{caption}
-\DeclareCaptionLabelSeparator{defffis}{ -- } % Разделитель
-\captionsetup[figure]{justification=centering, labelsep=defffis, format=plain} % Подпись рисунка по центру
-\captionsetup[table]{justification=raggedright, labelsep=defffis, format=plain, singlelinecheck=false} % Подпись таблицы слева
-\addto\captionsrussian{\renewcommand{\figurename}{Рис.}} % Имя фигуры
+% \RequirePackage{caption}
+% \DeclareCaptionLabelSeparator{defffis}{ -- } % Разделитель
+% \captionsetup[figure]{justification=centering, labelsep=defffis, format=plain} % Подпись рисунка по центру
+% \captionsetup[table]{justification=raggedright, labelsep=defffis, format=plain, singlelinecheck=false} % Подпись таблицы слева
+% \addto\captionsrussian{\renewcommand{\figurename}{Рис.}} % Имя фигуры
 
 
 % Пользовательские функции
@@ -198,8 +198,7 @@
 % Оформление заголовков
 \usepackage[compact,explicit]{titlesec}
 \titleformat{\section}{}{}{12.5mm}{\centering{\thesection\quad\MakeTextUppercase{#1}}\vspace{1.5em}}
-\titleformat{\subsection}[block]{\vspace{1em}}{}{12.5mm}{\thesubsection\quad#1\vspace{1em}}
-% \titleformat{\subsection}[block]{\vspace{1em}}{}{12.5mm}{\centering{\thesubsection\quad#1\vspace{1em}}}
+\titleformat{\subsection}[block]{\vspace{1em}}{}{12.5mm}{\centering{\thesubsection\quad#1\vspace{1em}}}
 \titleformat{\subsubsection}[block]{\vspace{1em}\normalsize}{}{12.5mm}{\thesubsubsection\quad#1\vspace{1em}}
 \titleformat{\paragraph}[block]{\normalsize}{}{12.5mm}{\MakeTextUppercase{#1}}
 
