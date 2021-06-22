@@ -9,7 +9,7 @@ build_nosync: extra/title.pdf
 rebuild: build_title
 	latexmk -g -use-make -xelatex -synctex=1 main.tex
 
-rebuild_nosync: build_title
+rebuild_nosync: extra/title.pdf
 	latexmk -g -use-make -xelatex main.tex
 
 extra/title.pdf: extra/title.odt

@@ -134,11 +134,11 @@
 }
 
 % Формат подрисуночных надписей
-% \RequirePackage{caption}
-% \DeclareCaptionLabelSeparator{defffis}{ -- } % Разделитель
-% \captionsetup[figure]{justification=centering, labelsep=defffis, format=plain} % Подпись рисунка по центру
-% \captionsetup[table]{justification=raggedright, labelsep=defffis, format=plain, singlelinecheck=false} % Подпись таблицы слева
-% \addto\captionsrussian{\renewcommand{\figurename}{Рис.}} % Имя фигуры
+\RequirePackage{caption}
+\DeclareCaptionLabelSeparator{defffis}{ -- } % Разделитель
+\captionsetup[figure]{justification=centering, labelsep=defffis, format=plain} % Подпись рисунка по центру
+\captionsetup[table]{justification=raggedright, labelsep=defffis, format=plain, singlelinecheck=false} % Подпись таблицы слева
+\addto\captionsrussian{\renewcommand{\figurename}{Рис.}} % Имя фигуры
 
 
 % Пользовательские функции
@@ -199,7 +199,7 @@
 \usepackage[compact,explicit]{titlesec}
 \titleformat{\section}{}{}{12.5mm}{\centering{\thesection\quad\MakeTextUppercase{#1}}\vspace{1.5em}}
 \titleformat{\subsection}[block]{\vspace{1em}}{}{12.5mm}{\centering{\thesubsection\quad#1\vspace{1em}}}
-\titleformat{\subsubsection}[block]{\vspace{1em}\normalsize}{}{12.5mm}{\thesubsubsection\quad#1\vspace{1em}}
+\titleformat{\subsubsection}[block]{\vspace{1em}\normalsize}{}{12.5mm}{\centering{\thesubsubsection\quad#1\vspace{1em}}}
 \titleformat{\paragraph}[block]{\normalsize}{}{12.5mm}{\MakeTextUppercase{#1}}
 
 % Секции без номеров (введение, заключение...), вместо section*{}
