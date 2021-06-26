@@ -1,2 +1,2 @@
 all:
-	libreoffice --headless --convert-to pdf presentation.odp
+	soffice --headless --convert-to pdf presentation.odp
