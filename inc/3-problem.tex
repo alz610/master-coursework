@@ -11,7 +11,7 @@
     \item Протестировать.
 \end{enumerate}
 
-На блок-схеме \ref{fig:block-scheme} изображены отношения между элементами. Каждый элемент не знает о элементах за элементом, с которым он связан. Каждый элемент служит абстракцией.
+На блок-схеме на рис. \ref{fig:block-scheme} изображены отношения между элементами. Каждый элемент не знает о элементах за элементом, с которым он связан. Каждый элемент служит абстракцией.
 
 \begin{figure}[h]
     \centering
@@ -200,6 +200,7 @@ _tmplNODETYPE_
 В параметр \lstinline{-n} --- задает кол-во тасков в задаче --- передается кол-во всех ядер в узлах \lstinline{_tmplTOTALCORES_}.
 
 В параметр \lstinline{-R} --- задает строку ресурсов --- передается кол-во ядер на узел \lstinline{_tmplCORES_}.
+
 \begin{lstlisting}
 #PBS -l nodes=_tmplNNODES__tmplNODETYPE_:ppn=_tmplCORES_
 -->
@@ -212,6 +213,7 @@ TOTALCORES = NNODES * CORES
 В параметр \lstinline{-notify} --- запрашивает уведомление пользователя, когда задание достигает любого из указанных состояний --- передаются состояния программы.
 
 В параметр \lstinline{-R} --- отправляет письмо по указанному адресу электронной почты --- передается адрес электронной почты.
+
 \begin{lstlisting}
 #PBS -m ea
 #PBS -M <usermail>
@@ -225,6 +227,7 @@ TOTALCORES = NNODES * CORES
 В параметр \lstinline{-W} --- устанавливает ограничение времени выполнения задания --- передается период 150 часов.
 
 В параметр \lstinline{-cwd} --- задает текущую рабочую директорию для выполнения задания --- передается путь директории.
+
 \begin{lstlisting}
 #PBS -N _tmplMODEL_
 #PBS -l walltime=150:00:00
@@ -239,6 +242,7 @@ TOTALCORES = NNODES * CORES
 \subsection{Поддержка команд, направляемы напрямую из Scheduler на кластер}
 
 Команды в Scheduler, относящиеся к конкретной системе очередей, хранятся в значениях ключей в словаре (тип данных на Python). Значениям соответствуют либо ссылки на исполняемые на сервере скрипты, либо команды для системы очередей, либо ссылки на методы обработки. Для LSF добавлены следующие значения ключей:
+
 \begin{lstlisting}
 QsysCMD.RUN_OMP:         "$RNKIMPATH/scripts/run_rnkim_omp_lsf.sh",
 QsysCMD.RUN_MPI:         "$RNKIMPATH/scripts/run_rnkim_decomp_mpi_lsf.sh",
@@ -253,6 +257,7 @@ QsysCMD.UPDT_JSTAT_MTHD: self._update_jstats_lsf
 Метод \lstinline{_update_jstats_lsf} обновляет статус моделей. Парсит JSON статуса модели и вызывает метод \lstinline{_pars_job_json_lsf} для парсинга значений полей JSON статуса.
 
 Метод \lstinline{_update_jstats_lsf} парсит поля с значениями у JSON статуса и записывает ключ 'имя модели' со значением словарь состояния:
+
 \begin{lstlisting}
 {
     "JOBID":"1363",
@@ -284,47 +289,47 @@ model_name:
 
 Значение полей:
 
-\lstinline{JOBID}: идентификатор задачи, является порядковым номером задачи
+\lstinline{JOBID}: идентификатор задачи, является порядковым номером задачи;
 
-\lstinline{USER}: имя пользователя, который отправил задачу в очередь
+\lstinline{USER}: имя пользователя, который отправил задачу в очередь;
 
-\lstinline{STAT}: состояние исполнения задачи
+\lstinline{STAT}: состояние исполнения задачи;
 
-\lstinline{JOB_NAME}: имя задачи, содержащее имя модели
+\lstinline{JOB_NAME}: имя задачи, содержащее имя модели;
 
-\lstinline{SUBMIT_TIME}: дата отправки задачи в очередь
+\lstinline{SUBMIT_TIME}: дата отправки задачи в очередь;
 
-\lstinline{START_TIME}: дата запуска задачи
+\lstinline{START_TIME}: дата запуска задачи;
 
-\lstinline{FINISH_TIME}: дата завершения задачи
+\lstinline{FINISH_TIME}: дата завершения задачи;
 
-\lstinline{ERROR_FILE}: путь к файлу с выводом задачи
+\lstinline{ERROR_FILE}: путь к файлу с выводом задачи;
 
-\lstinline{OUTPUT_FILE}: путь к файлу с сообщениями задачи о ошибках
+\lstinline{OUTPUT_FILE}: путь к файлу с сообщениями задачи о ошибках;
 
-\lstinline{EFFECTIVE_RESREQ}: запрошенные ресурсы для задачи: один узел или кол-во ядер в каждом узле
+\lstinline{EFFECTIVE_RESREQ}: запрошенные ресурсы для задачи: один узел или кол-во ядер в каждом узле;
 
-\lstinline{SLOTS}: кол-во всех запрошенных ядер
+\lstinline{SLOTS}: кол-во всех запрошенных ядер;
 
-\lstinline{model_name}: имя модели
+\lstinline{model_name}: имя модели;
 
-\lstinline{JobStat.ACC_NAME}: имя пользователя, который отправил модель на кластер
+\lstinline{JobStat.ACC_NAME}: имя пользователя, который отправил модель на кластер;
 
-\lstinline{JobStat.JOB_NAME}: имя задачи расчета, содержащее имя модели
+\lstinline{JobStat.JOB_NAME}: имя задачи расчета, содержащее имя модели;
 
-\lstinline{JobStat.OUT_PATH}: путь к файлу с выводом расчета модели
+\lstinline{JobStat.OUT_PATH}: путь к файлу с выводом расчета модели;
 
-\lstinline{JobStat.ERR_PATH}: путь к файлу с сообщениями расчета модели о ошибках
+\lstinline{JobStat.ERR_PATH}: путь к файлу с сообщениями расчета модели о ошибках;
 
-\lstinline{JobStat.JOB_STAT}: состояние расчета модели
+\lstinline{JobStat.JOB_STAT}: состояние расчета модели;
 
-\lstinline{JobStat.NUM_NODES}: кол-во узлов, запрошенных для модели
+\lstinline{JobStat.NUM_NODES}: кол-во узлов, запрошенных для модели;
 
-\lstinline{JobStat.QUEUE_TIME}: дата отправки расчета модели в очередь
+\lstinline{JobStat.QUEUE_TIME}: дата отправки расчета модели в очередь;
 
-\lstinline{JobStat.START_TIME}: дата запуска расчета модели
+\lstinline{JobStat.START_TIME}: дата запуска расчета модели;
 
-\lstinline{JobStat.COMPL_TIME}: дата завершения расчета модели
+\lstinline{JobStat.COMPL_TIME}: дата завершения расчета модели.
 
 \subsection{Тестирование}
 

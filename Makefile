@@ -1,19 +1,22 @@
 all: build_nosync #run
 
-build: build_title
+build: extra/title.pdf
 	latexmk -xelatex -synctex=1 main.tex
 
 build_nosync: extra/title.pdf
 	latexmk -xelatex main.tex
+
+build_odt:
+	soffice --headless --convert-to docx main.odt
 	
-rebuild: build_title
+rebuild: extra/title.pdf
 	latexmk -g -use-make -xelatex -synctex=1 main.tex
 
 rebuild_nosync: extra/title.pdf
 	latexmk -g -use-make -xelatex main.tex
 
 extra/title.pdf: extra/title.odt
-	libreoffice --headless --convert-to pdf extra/title.odt --outdir extra
+	soffice --headless --convert-to pdf extra/title.odt --outdir extra
 
 run:
 	# Я использую xreader для просмотра PDF
