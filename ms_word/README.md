@@ -5,11 +5,11 @@ master-coursework
 
 Файлы:
 
-* main.odt -- исходник, который правится в LibreOffice Writer
-* main.docx -- сконвертированный main.odt в файл docx (формат MS Word 2007 XML) для сдачи на проверку в Microsoft Word
-* main.pdf -- сконвертированный main.odt в файл pdf для печати
+* Исходник `main.odt` правится в LibreOffice Writer и собирается в `main.docx` (формат MS Word 2007 XML) и `main.pdf` с помощью Makefile
+* Файл `main.docx` сдается на проверку в Microsoft Word
+* Файл `main.pdf` для печати
 
-Сборка конвертирует main.odt:
+Пример сборки проекта с помощью Makefile:
 
 ```bash
 make
